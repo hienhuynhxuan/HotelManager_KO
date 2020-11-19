@@ -1,0 +1,70 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+     <section class="container">
+        <form class="form">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label class="col-form-label">Find room name:</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                </div>
+
+<!--                <div class="col-lg-3">-->
+<!--                    <div class="form-group">-->
+<!--                        <label class="col-form-label">Tìm loại phòng:</label>-->
+<!--                        <input type="text" name="kind" class="form-control">-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-lg-3">-->
+<!--                    <div class="form-group">-->
+<!--                        <label class="col-form-label">Tìm tác giả:</label>-->
+<!--                        <input type="text" name="tacGia" class="form-control">-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label class="col-form-label">Status:</label>
+                        <select name="status" class="form-control">
+                             <option value="">None</option>
+                            {% for tt in status %}
+                                <option value="{{ tt.value }}">{{ tt.value }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger">
+            </div>
+        </form>
+         <h1>ROOM LIST</h1>
+        <table class="table">
+            <caption><h1>ROOM</h1></caption>
+            <thead>
+            <tr class="table__tr">
+                <td class="table__td">Number</td>
+                <td class="table__td">ID</td>
+                <td class="table__td">Room name</td>
+                <td class="table__td">Kind of room</td>
+                <td class="table__td">Status</td>
+                <td class="table__td">Amount of people</td>
+            </tr>
+            </thead>
+            <tbody class="table__tobdy">
+            {% for b in rooms %}
+                <tr class="table__tr">
+                    <td class="table__td">{{ loop.index0 + 1 }}</td>
+                    <td class="table__td">{{ b.id }}</td>
+                    <td class="table__td">{{ b.name }}</td>
+                    <td class="table__td">{{ b.kind_of_room_id }}</td>
+                    <td class="table__td">{{ b.status.value }}</td>
+                    <td class="table__td">{{ b.amount }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
